@@ -1,1 +1,565 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#b7a6df">
+<meta name="description" content="SANTA — DREAMS FOR EVERYONE. 心・体・食を通して、一人ひとりの夢と、その先の笑顔へ。">
+<title>SANTA | DREAMS FOR EVERYONE.</title>
+<style>
+:root {
+  --ink: #493b59;
+  --purple: #9580bb;
+  --paper: #fffdfa;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid #774e9e;
+  outline-offset: 6px;
+}
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+header {
+  position: absolute;
+  z-index: 10;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 5vw;
+  color: white;
+}
+.logo { font-size: 30px; font-weight: 900; letter-spacing: .17em; }
+.logo small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: .32em;
+  font-weight: 500;
+  margin-top: 3px;
+}
+nav { display: flex; gap: 34px; font-size: 12px; letter-spacing: .1em; }
+nav a { padding: 10px 0; border-bottom: 1px solid transparent; }
+nav a:hover { border-color: currentColor; }
+.menu {
+  display: none;
+  background: transparent;
+  border: 1px solid #ffffff80;
+  color: white;
+  border-radius: 30px;
+  padding: 9px 15px;
+  cursor: pointer;
+}
+.hero {
+  min-height: 760px;
+  height: 94svh;
+  max-height: 1100px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 85% 76%, #f4bacc 0, transparent 56%),
+    radial-gradient(ellipse at 12% 18%, #a7a2df 0, transparent 60%),
+    linear-gradient(125deg, #b4a5dc, #d7b3df 54%, #ecc3ce);
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.hero::before, .hero::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff40;
+  border-radius: 50%;
+  width: 760px;
+  height: 760px;
+  right: -170px;
+  top: 70px;
+  transform: rotate(-22deg) scaleX(.72);
+  pointer-events: none;
+}
+.hero::after { right: -90px; top: 140px; border-color: #ffffff24; }
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(1240px, 90%);
+  margin: auto;
+  padding: 120px 0 100px;
+}
+.eyebrow { font-size: 11px; letter-spacing: .25em; font-weight: 600; }
+.hero h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(64px, 9.8vw, 151px);
+  font-weight: 800;
+  line-height: .99;
+  letter-spacing: -.065em;
+  margin: 38px 0 34px;
+}
+.hero h1 span { display: block; }
+.hero-copy {
+  font-size: clamp(16px, 1.7vw, 22px);
+  letter-spacing: .16em;
+  line-height: 2;
+}
+.hero-foot {
+  position: absolute;
+  bottom: 37px;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: .2em;
+}
+.scroll { display: flex; align-items: center; gap: 18px; }
+.scroll::after { content: ""; height: 46px; width: 1px; background: #ffffffb0; }
+.container { width: min(1120px, 86%); margin: auto; }
+.section-label {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--purple);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-label::before {
+  content: "";
+  width: 27px;
+  height: 1px;
+  background: currentColor;
+}
+.concept { padding: 135px 0 125px; }
+.concept-layout {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 60px;
+}
+.section-number {
+  font-family: Georgia, serif;
+  font-size: 120px;
+  font-style: italic;
+  color: #ede6f1;
+  line-height: 1;
+  margin-top: 30px;
+}
+.concept h2 {
+  font-size: clamp(27px, 3.4vw, 43px);
+  font-weight: 500;
+  letter-spacing: .11em;
+  line-height: 1.8;
+  margin: 0 0 30px;
+}
+.body-copy { font-size: 14px; letter-spacing: .08em; line-height: 2.5; }
+.body-copy p { margin: 0 0 20px; }
+.concept-sign {
+  font-family: Georgia, serif;
+  font-style: italic;
+  color: #b69ac6;
+  font-size: 27px;
+  margin-top: 34px;
+}
+.pillars {
+  background: #f2edf5;
+  padding: 100px 0 110px;
+  border-radius: 120px 0 0 0;
+}
+.section-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 55px;
+}
+.section-top h2 {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: .13em;
+  margin: 20px 0 0;
+}
+.section-top p { font-size: 13px; line-height: 2; letter-spacing: .07em; margin: 0; }
+.pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.pillar { display: block; text-align: center; }
+.pillar-image {
+  aspect-ratio: 1.13;
+  border-radius: 50% 50% 45% 45%;
+  overflow: hidden;
+  background: #e2d8e7;
+}
+.pillar:nth-child(2) .pillar-image { border-radius: 45% 48% 50% 46%; }
+.pillar:nth-child(3) .pillar-image { border-radius: 50% 45% 46% 49%; }
+.pillar img { transition: transform .6s; }
+.pillar:hover img { transform: scale(1.035); }
+.pillar h3 {
+  font-size: 29px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  margin: 26px 0 12px;
+}
+.pillar h3 span {
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--purple);
+  letter-spacing: 0;
+  margin-left: 10px;
+}
+.pillar p { font-size: 12px; line-height: 2; letter-spacing: .06em; margin: 0; }
+.heart { padding: 125px 0 120px; }
+.heart-heading { display: flex; align-items: center; gap: 24px; margin: 23px 0 25px; }
+.heart-heading h2 { font-size: 58px; font-weight: 400; margin: 0; }
+.heart-heading span { font: italic 37px Georgia, serif; color: var(--purple); }
+.heart-intro {
+  max-width: 620px;
+  font-size: 14px;
+  line-height: 2.3;
+  letter-spacing: .08em;
+  margin: 0 0 55px;
+}
+.activities { display: grid; grid-template-columns: repeat(2, 1fr); gap: 55px 42px; }
+.activity-photo {
+  aspect-ratio: 1.52;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #ede6f1;
+}
+.activity-photo img { transition: transform .6s; }
+.activity:hover img { transform: scale(1.025); }
+.activity-heading { display: flex; align-items: baseline; gap: 17px; margin: 22px 0 13px; }
+.activity-number { font: italic 19px Georgia, serif; color: #ad93bd; }
+.activity h3 { font-size: 20px; letter-spacing: .08em; font-weight: 500; margin: 0; }
+.activity p { font-size: 13px; line-height: 2.2; letter-spacing: .05em; margin: 0; }
+.closing {
+  background: linear-gradient(120deg, #b7a9da, #e7b8cf);
+  color: white;
+  padding: 65px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.closing p {
+  font-family: Arial, sans-serif;
+  font-size: clamp(25px, 4vw, 53px);
+  font-weight: 700;
+  letter-spacing: -.035em;
+  margin: 0;
+}
+.back-top {
+  font-size: 11px;
+  letter-spacing: .12em;
+  border: 1px solid #ffffff85;
+  border-radius: 50%;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+footer {
+  padding: 35px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer .logo { font-size: 23px; }
+footer small { font-size: 10px; letter-spacing: .08em; color: #8f8398; }
 
+@media (max-width: 760px) {
+  header { padding: 22px 6%; }
+  .logo { font-size: 25px; }
+  .menu { display: block; }
+  nav {
+    display: none;
+    position: absolute;
+    top: 83px;
+    left: 5%;
+    right: 5%;
+    padding: 20px 25px;
+    background: #fff9fc;
+    box-shadow: 0 15px 35px #65507220;
+    color: var(--ink);
+    border-radius: 14px;
+    flex-direction: column;
+    gap: 7px;
+  }
+  nav.is-open { display: flex; }
+  .hero { height: 88svh; min-height: 650px; max-height: 850px; }
+  .hero-inner { width: 88%; padding-top: 120px; }
+  .hero h1 { font-size: clamp(44px, 12.5vw, 92px); margin: 34px 0; }
+  .hero-copy { font-size: 15px; letter-spacing: .1em; }
+  .eyebrow { font-size: 9px; }
+  .hero::before { right: -440px; }
+  .hero::after { right: -380px; }
+  .hero-foot { left: 6%; right: 6%; font-size: 8px; letter-spacing: .1em; }
+  .scroll { gap: 10px; }
+  .container { width: 86%; }
+  .concept { padding: 80px 0; }
+  .concept-layout { grid-template-columns: 1fr; gap: 26px; }
+  .section-number { display: none; }
+  .concept h2 { font-size: 27px; letter-spacing: .05em; }
+  .body-copy { font-size: 13px; }
+  .pillars { border-radius: 65px 0 0 0; padding: 75px 0; }
+  .section-top { display: block; margin-bottom: 35px; }
+  .section-top h2 { font-size: 26px; }
+  .section-top p { margin-top: 22px; }
+  .pillar-grid { grid-template-columns: 1fr; gap: 43px; }
+  .pillar { max-width: 340px; width: 100%; margin: auto; }
+  .pillar-image { aspect-ratio: 1.2; }
+  .pillar h3 { margin-top: 20px; }
+  .heart { padding: 80px 0; }
+  .heart-heading h2 { font-size: 45px; }
+  .heart-heading span { font-size: 30px; }
+  .heart-intro { font-size: 13px; margin-bottom: 35px; }
+  .activities { grid-template-columns: 1fr; gap: 38px; }
+  .activity h3 { font-size: 19px; }
+  .activity-heading { margin-top: 19px; }
+  .closing { padding: 42px 7%; }
+  .closing p { max-width: 230px; line-height: 1.1; }
+  .back-top { width: 59px; height: 59px; font-size: 9px; }
+  footer { gap: 20px; align-items: flex-start; }
+  footer small { font-size: 9px; text-align: right; line-height: 1.8; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+
+<body id="top">
+<header>
+  <a class="logo" href="#top" aria-label="SANTA トップ">
+    SANTA
+    <small>DREAMS FOR EVERYONE</small>
+  </a>
+  <button class="menu" type="button" aria-expanded="false" aria-controls="navigation">
+    MENU
+  </button>
+  <nav id="navigation" aria-label="メインナビゲーション">
+    <a href="#concept">コンセプト</a>
+    <a href="#approach">心・体・食</a>
+    <a href="#heart">心の活動</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <p class="eyebrow">SANTA — DREAMS FOR EVERYONE</p>
+      <h1 id="hero-title">
+        <span>DREAMS FOR</span>
+        <span>EVERYONE.</span>
+      </h1>
+      <p class="hero-copy">
+        すべての人に、夢を。<br>
+        その一歩から、笑顔が広がる。
+      </p>
+    </div>
+    <div class="hero-foot">
+      <span>心と、体と、食から。未来を育む。</span>
+      <a class="scroll" href="#concept">SCROLL DOWN</a>
+    </div>
+  </section>
+
+  <section class="concept" id="concept" aria-labelledby="concept-title">
+    <div class="container concept-layout">
+      <div>
+        <div class="section-label">OUR CONCEPT</div>
+        <div class="section-number" aria-hidden="true">01</div>
+      </div>
+      <div>
+        <h2 id="concept-title">
+          夢を持つこと。<br>
+          自分らしく、生きること。
+        </h2>
+        <div class="body-copy">
+          <p>
+            小さな「やってみたい」が、明日を変えるきっかけになる。<br>
+            誰もが自分の可能性を信じ、夢を描けるように。
+          </p>
+          <p>
+            SANTAが大切にしているのは、<br>
+            心と体、そして毎日の食を通して、<br>
+            一人ひとりの暮らしに寄り添うこと。
+          </p>
+          <p>
+            人と人がつながり、支え合い、笑顔が生まれる。<br>
+            そんなあたたかな循環を、ここから育てていきます。
+          </p>
+        </div>
+        <p class="concept-sign">Dreams for everyone.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars" id="approach" aria-labelledby="approach-title">
+    <div class="container">
+      <div class="section-top">
+        <div>
+          <div class="section-label">OUR APPROACH</div>
+          <h2 id="approach-title">心・体・食</h2>
+        </div>
+        <p>
+          健やかな毎日をつくる、3つのつながり。<br>
+          暮らしの中に、夢を育む土台を。
+        </p>
+      </div>
+
+      <div class="pillar-grid">
+        <a class="pillar" href="#heart">
+          <div class="pillar-image">
+            <img src="public/7afcbe4a.webp" alt="心の活動を伝える風景" loading="lazy" decoding="async">
+          </div>
+          <h3>心<span>Heart</span></h3>
+          <p>
+            心が動く出会いと体験を。<br>
+            自分らしさと、夢の芽を育む。
+          </p>
+        </a>
+
+        <div class="pillar">
+          <div class="pillar-image">
+            <img src="public/852ac021.webp" alt="体の活動を伝える風景" loading="lazy" decoding="async">
+          </div>
+          <h3>体<span>Body</span></h3>
+          <p>
+            体を動かす楽しさを、日常に。<br>
+            健やかに、一歩を踏み出す力へ。
+          </p>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-image">
+            <img src="public/908a8159.webp" alt="食の活動を伝える風景" loading="lazy" decoding="async">
+          </div>
+          <h3>食<span>Food</span></h3>
+          <p>
+            食べるよろこびを、分かち合う。<br>
+            毎日の食から、笑顔をつなぐ。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="heart" id="heart" aria-labelledby="heart-title">
+    <div class="container">
+      <div class="section-label">OUR ACTIVITIES — 01</div>
+      <div class="heart-heading">
+        <h2 id="heart-title">心</h2>
+        <span>Heart</span>
+      </div>
+      <p class="heart-intro">
+        出会う、感じる、挑戦する。<br>
+        さまざまな体験を通して心の豊かさを育み、<br>
+        一人ひとりの「やってみたい」を、次の一歩へつなげます。
+      </p>
+
+      <div class="activities">
+        <article class="activity">
+          <div class="activity-photo">
+            <img src="public/e58887a2.webp" alt="夢と出会う活動の風景" loading="lazy" decoding="async">
+          </div>
+          <div class="activity-heading">
+            <span class="activity-number">01</span>
+            <h3>夢と出会う</h3>
+          </div>
+          <p>
+            知らなかった世界に触れ、新しい自分の可能性を見つける。
+            心が動く体験が、未来を思い描くきっかけになります。
+          </p>
+        </article>
+
+        <article class="activity">
+          <div class="activity-photo">
+            <img src="public/eef41c2b.webp" alt="人とつながる活動の風景" loading="lazy" decoding="async">
+          </div>
+          <div class="activity-heading">
+            <span class="activity-number">02</span>
+            <h3>人とつながる</h3>
+          </div>
+          <p>
+            ともに過ごし、気持ちを分かち合う。
+            人との出会いや対話を通して、互いを大切にする心を育みます。
+          </p>
+        </article>
+
+        <article class="activity">
+          <div class="activity-photo">
+            <img src="public/7afcbe4a.webp" alt="自分らしく表現する活動の風景" loading="lazy" decoding="async">
+          </div>
+          <div class="activity-heading">
+            <span class="activity-number">03</span>
+            <h3>自分らしく表現する</h3>
+          </div>
+          <p>
+            感じたこと、好きなことを、自分の言葉やかたちに。
+            一人ひとりの違いを認め合い、表現するよろこびを広げます。
+          </p>
+        </article>
+
+        <article class="activity">
+          <div class="activity-photo">
+            <img src="public/852ac021.webp" alt="新しい一歩に挑戦する活動の風景" loading="lazy" decoding="async">
+          </div>
+          <div class="activity-heading">
+            <span class="activity-number">04</span>
+            <h3>一歩を踏み出す</h3>
+          </div>
+          <p>
+            小さな挑戦を重ねることが、自信につながる。
+            「やってみたい」という気持ちを大切に、次の一歩を応援します。
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>DREAMS FOR EVERYONE.</p>
+    <a class="back-top" href="#top" aria-label="ページ上部へ戻る">TOP ↑</a>
+  </div>
+</main>
+
+<footer>
+  <a class="logo" href="#top">SANTA</a>
+  <small>© SANTA. All rights reserved.</small>
+</footer>
+
+<script>
+const menu = document.querySelector(".menu");
+const navigation = document.querySelector("#navigation");
+
+function closeMenu() {
+  menu.setAttribute("aria-expanded", "false");
+  navigation.classList.remove("is-open");
+}
+
+menu.addEventListener("click", () => {
+  const open = menu.getAttribute("aria-expanded") !== "true";
+  menu.setAttribute("aria-expanded", String(open));
+  navigation.classList.toggle("is-open", open);
+});
+
+navigation.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", closeMenu);
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && navigation.classList.contains("is-open")) {
+    closeMenu();
+    menu.focus();
+  }
+});
+
+window.matchMedia("(min-width: 761px)").addEventListener("change", closeMenu);
+</script>
+</body>
+</html>
